@@ -1,0 +1,9 @@
+{
+  "name": "loom-ui",
+  "private": true,
+  "description": "A collection of UI packages for svelte and sveltekit",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "build": "bun run build --workspaces --if-present"
+  }
+}
