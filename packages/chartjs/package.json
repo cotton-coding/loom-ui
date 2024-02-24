@@ -1,11 +1,12 @@
 {
-  "name": "chartjs",
+  "name": "@loom-ui/chartjs",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
     "preview": "vite preview",
     "package": "svelte-kit sync && svelte-package && publint",
+    "package:watch": "svelte-kit sync && svelte-package --watch",
     "prepublishOnly": "npm run package",
     "test": "npm run test:integration && npm run test:unit",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -27,7 +28,8 @@
     "!dist/**/*.spec.*"
   ],
   "peerDependencies": {
-    "svelte": "^4.0.0"
+    "svelte": "^4.0.0",
+    "chart.js": "^4.4.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.28.1",
@@ -54,7 +56,5 @@
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
-  "dependencies": {
-    "chart.js": "^4.4.1"
-  }
+  "dependencies": {}
 }

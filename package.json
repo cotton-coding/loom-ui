@@ -5,5 +5,8 @@
   "workspaces": ["packages/*"],
   "scripts": {
     "build": "bun run build --workspaces --if-present"
+  },
+  "dependencies": {
+
   }
 }
