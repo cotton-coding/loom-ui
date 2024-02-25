@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
   import { Chart, Legend, type ChartConfiguration, type LegendOptions, type LegendItem, type LegendElement, type ChartEvent, type ChartTypeRegistry } from 'chart.js';
-  import type { _DeepPartialObject } from 'chart.js/types/utils';
   import { CHART_JS_CONTEXT } from '$lib/const.js';
   import { createEventDispatcher, onMount } from 'svelte';
   import { getContext, hasContext } from 'svelte';
@@ -87,7 +86,7 @@
     updateLegendPlugin({ position: pos });
   }
 
-  function updateTitle(title: string) {
+  function updateTitle(title: string | undefined) {
     if(title) {
       updateLegendPlugin({ title: { text: title, display: true } });
     } else {

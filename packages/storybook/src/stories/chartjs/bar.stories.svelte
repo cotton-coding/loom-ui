@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
 
   import { Template, Story } from '@storybook/addon-svelte-csf';
-  import { Doughnut, Legend } from '@loom-ui/chartjs';
+  import { Bar, Legend } from '@loom-ui/chartjs';
 
   export const meta = {
-    title: 'Components/Chart.js/Doughnut',
+    title: 'Components/Chart.js/Bar',
     component: Image,
     argTypes: {
 
@@ -23,27 +23,11 @@
 </script>
 
 <Template let:args>
-	<Doughnut {...args} />
+  <Bar {...args} />
 </Template>
 
-<Story name="Simple" args={{
-		datasets: [
-			{
-				label: 'My First Dataset',
-				data: [300, 50, 100],
-				backgroundColor: [
-					'rgb(255, 99, 132)',
-					'rgb(54, 162, 235)',
-					'rgb(255, 205, 86)',
-				],
-			}
-		]	
-	}} 
-/>
-
-
 <Story name="With legend">
-	<Doughnut 
+	<Bar 
 		datasets={[
 			{
 				label: 'My First Dataset',
@@ -58,16 +42,17 @@
 		responsive
 		--chart-width="80vw"
 		--chart-height="100vh"
+		
 	>
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
-	</Doughnut>
+	</Bar>
 </Story>
 
 
 <Story name="With legend and title" args={{
 		title: 'Actress',
 }} let:args>
-	<Doughnut datasets={[
+	<Bar datasets={[
 		{
 			label: 'My First Dataset',
 			data: [300, 50, 100],
@@ -79,6 +64,5 @@
 		}
 	]}>
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} title={args.title}/>
-	</Doughnut>
+	</Bar>
 </Story>
-
