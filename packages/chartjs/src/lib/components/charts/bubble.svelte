@@ -1,14 +1,14 @@
 <script lang="ts" context="module">
-  import { Chart, BarController, CategoryScale, LinearScale, BarElement} from 'chart.js';
+  import { Chart, BarController, CategoryScale, LinearScale, BarElement, LineController, BubbleController, PointElement, LineElement} from 'chart.js';
   import type { ChartData, UpdateMode, ChartOptions } from 'chart.js';
   import BaseChart from './chart.svelte';
   
-  Chart.register(BarController, CategoryScale, LinearScale, BarElement);
+  Chart.register(BubbleController, PointElement, LineElement);
 </script>
 
 <script lang="ts">
 
-  const type= 'bar' as const;
+  const type= 'line' as const;
   export let updateMode: UpdateMode = "none";
   export let data: ChartData<typeof type>;
   export let options: ChartOptions<typeof type> = {};

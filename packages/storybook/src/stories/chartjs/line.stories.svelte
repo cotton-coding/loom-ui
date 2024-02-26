@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
 
   import { Template, Story } from '@storybook/addon-svelte-csf';
-  import { Bar, Legend, Title } from '@loom-ui/chartjs';
+  import { Line, Legend } from '@loom-ui/chartjs';
 
   export const meta = {
-    title: 'Components/Chart.js/Bar',
+    title: 'Components/Chart.js/Line',
     component: Image,
     argTypes: {
 
@@ -24,11 +24,11 @@
 </script>
 
 <Template let:args>
-  <Bar {...args} />
+  <Line {...args} />
 </Template>
 
 <Story name="With legend">
-	<Bar 
+	<Line 
 		data={{
 			datasets: [
 			{
@@ -47,14 +47,14 @@
 		
 	>
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
-	</Bar>
+	</Line>
 </Story>
 
 
 <Story name="With legend and title" args={{
 		title: 'Actress',
 }} let:args>
-	<Bar 
+	<Line 
 		data={{
 			datasets: [
 			{
@@ -72,5 +72,5 @@
 		--chart-height="100vh"
 	>
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} title={args.title}/>
-	</Bar>
+	</Line>
 </Story>

@@ -1,22 +1,12 @@
 <script lang="ts" context="module">
-  import { Chart, Legend, type ChartConfiguration, type LegendOptions, type LegendItem, type LegendElement, type ChartEvent, type ChartTypeRegistry } from 'chart.js';
-  import { CHART_JS_CONTEXT } from '$lib/const.js';
+	import type { _DeepPartialObject } from '$lib/definitions.js';
+  import { Chart, Legend, type ChartConfiguration, type LegendOptions, type LegendItem, type LegendElement, type ChartEvent, type ChartTypeRegistry, type LayoutPosition } from 'chart.js';
+  import { CONTEXT_CHART, type chartContextData } from '$lib/definitions.js';
   import { createEventDispatcher, onMount } from 'svelte';
   import { getContext, hasContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
 
   Chart.register(Legend);
 
-  export type DeepPartial<T> = T extends Function
-  ? T
-  : T extends Array<infer U>
-    ? _DeepPartialArray<U>
-    : T extends object
-      ? _DeepPartialObject<T>
-      : T | undefined;
-
-  type _DeepPartialArray<T> = Array<DeepPartial<T>>
-  type _DeepPartialObject<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 
 </script>
 
@@ -26,19 +16,17 @@
   export let title: string | undefined = undefined;
   export let display: boolean = true;
   export let labels: Array<string>
-  export let position: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  export let position: LayoutPosition = 'top';
 
-  const chartStore = getContext<Writable<ChartConfiguration>>(CHART_JS_CONTEXT);
+  const { data, options } = getContext<chartContextData>(CONTEXT_CHART);
 
   function updateLabels(labels: Array<string>) {
-    chartStore.update((chartData) => {
+    data.update((chartData) => {
       return {
         ...chartData,
-        data: {
-          ...chartData.data || {},
-          labels
-        }
-    }}); 
+        labels
+      }
+    }); 
   }
 
   type LegendEventData = {
@@ -66,16 +54,13 @@
   }
 
   function updateLegendPlugin(legend: _DeepPartialObject<LegendOptions<keyof ChartTypeRegistry>>) {
-    chartStore.update((chartData) => {
+    options.update((chartOptions) => {
       return {
-        ...chartData,
-        options: {
-          ...chartData.options || {},
-          plugins: {
-            legend: {
-              ...chartData.options?.plugins?.legend || {},
-              ...legend
-            }
+        ...chartOptions || {},
+        plugins: {
+          legend: {
+            ...chartOptions.plugins?.legend || {},
+            ...legend
           }
         }
       }
@@ -97,11 +82,11 @@
   function updateDisplay(display: boolean) {
     updateLegendPlugin({ display });
   }
-
-  $: hasContext(CHART_JS_CONTEXT) && updateDisplay(display);
-  $: hasContext(CHART_JS_CONTEXT) && updateTitle(title);
-  $: hasContext(CHART_JS_CONTEXT) && updateLabels(labels);
-  $: hasContext(CHART_JS_CONTEXT) && updatePosition(position);
+  
+  $: hasContext(CONTEXT_CHART) && updateDisplay(display);
+  $: hasContext(CONTEXT_CHART) && updateTitle(title);
+  $: hasContext(CONTEXT_CHART) && updateLabels(labels);
+  $: hasContext(CONTEXT_CHART) && updatePosition(position);
 
 </script>
 

@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
 
   import { Template, Story } from '@storybook/addon-svelte-csf';
-  import { Bar, Legend, Title } from '@loom-ui/chartjs';
+  import { Radar, Legend } from '@loom-ui/chartjs';
 
   export const meta = {
-    title: 'Components/Chart.js/Bar',
+    title: 'Components/Chart.js/Radar',
     component: Image,
     argTypes: {
 
@@ -20,15 +20,14 @@
 <script lang="ts">
 
 
-
 </script>
 
 <Template let:args>
-  <Bar {...args} />
+	<Radar {...args} />
 </Template>
 
 <Story name="With legend">
-	<Bar 
+	<Radar 
 		data={{
 			datasets: [
 			{
@@ -44,17 +43,16 @@
 		responsive
 		--chart-width="80vw"
 		--chart-height="100vh"
-		
 	>
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
-	</Bar>
+	</Radar>
 </Story>
 
 
 <Story name="With legend and title" args={{
 		title: 'Actress',
 }} let:args>
-	<Bar 
+	<Radar 
 		data={{
 			datasets: [
 			{
@@ -67,10 +65,8 @@
 				],
 			}
 		]}}
-		responsive
-		--chart-width="80vw"
-		--chart-height="100vh"
 	>
-		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} title={args.title}/>
-	</Bar>
+		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} position="bottom"/>
+	</Radar>
 </Story>
+

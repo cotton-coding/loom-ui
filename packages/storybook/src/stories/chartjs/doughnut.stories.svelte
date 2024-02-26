@@ -27,6 +27,7 @@
 </Template>
 
 <Story name="Simple" args={{
+	data: {
 		datasets: [
 			{
 				label: 'My First Dataset',
@@ -38,13 +39,14 @@
 				],
 			}
 		]	
-	}} 
+	}}} 
 />
 
 
 <Story name="With legend">
 	<Doughnut 
-		datasets={[
+		data={{
+			datasets: [
 			{
 				label: 'My First Dataset',
 				data: [300, 50, 100],
@@ -54,7 +56,7 @@
 					'rgb(255, 205, 86)',
 				],
 			}
-		]}
+		]}}
 		responsive
 		--chart-width="80vw"
 		--chart-height="100vh"
@@ -67,17 +69,20 @@
 <Story name="With legend and title" args={{
 		title: 'Actress',
 }} let:args>
-	<Doughnut datasets={[
-		{
-			label: 'My First Dataset',
-			data: [300, 50, 100],
-			backgroundColor: [
-				'rgb(255, 99, 132)',
-				'rgb(54, 162, 235)',
-				'rgb(255, 205, 86)',
-			],
-		}
-	]}>
+	<Doughnut 
+		data={{
+			datasets: [
+			{
+				label: 'My First Dataset',
+				data: [300, 50, 100],
+				backgroundColor: [
+					'rgb(255, 99, 132)',
+					'rgb(54, 162, 235)',
+					'rgb(255, 205, 86)',
+				],
+			}
+		]}}
+	>
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} title={args.title}/>
 	</Doughnut>
 </Story>

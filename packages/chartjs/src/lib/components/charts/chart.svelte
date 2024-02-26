@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
+	import { CONTEXT_CHART, type chartContextData } from '$lib/definitions.js';
   import { writable } from 'svelte/store';
-  import type { ChartConfiguration, ChartDataset, ChartOptions, DefaultDataPoint,  } from 'chart.js';
-  import { CHART_JS_CONTEXT } from '$lib/const.js';
+  import type { ChartData, ChartDataset, ChartOptions, DefaultDataPoint,  } from 'chart.js';
   import type { ChartType, UpdateMode } from 'chart.js';
 	import { setContext } from 'svelte';
   import { chartAction } from '$lib/actions/chart.js';
@@ -10,26 +10,30 @@
 
 <script lang="ts" generics="TType extends ChartType = ChartType, TData = DefaultDataPoint<TType>, TLabel= unknown ">
   export let type: TType;
-  export let datasets: ChartDataset<TType, TData>[];
+  export let data: ChartData<TType, TData, TLabel>;
   export let updateMode: UpdateMode = "none";
   export let options: ChartOptions<TType>;
   export let responsive: boolean = false;
   $: options = { ...options, responsive, maintainAspectRatio: !responsive};
 
-  const chartConfig = writable<ChartConfiguration<TType, TData, TLabel>>({
-    type,
-    data: {
-      datasets
-    },
-    options
-  });
+  const dataStore = writable<ChartData<TType, TData, TLabel>>(data);
 
-  setContext(CHART_JS_CONTEXT, chartConfig);
+  const optionStore = writable<ChartOptions<TType>>(options);
+
+  setContext<chartContextData<TType, TData, TLabel>>(CONTEXT_CHART, {
+    type,
+    data: dataStore,
+    options: optionStore
+  });
   
 </script>
 <div>
   <canvas use:chartAction={{
-    config: $chartConfig,
+    config: {
+      type,
+      data: $dataStore,
+      options: $optionStore
+    },
     updateMode
   }}>
     <slot />

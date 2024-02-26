@@ -27,6 +27,7 @@
     "!dist/**/*.spec.*"
   ],
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@storybook/addon-svelte-csf": "^4.1.1",
     "chart.js": "^4.4.1",
     "chartjs": "workspace:*"

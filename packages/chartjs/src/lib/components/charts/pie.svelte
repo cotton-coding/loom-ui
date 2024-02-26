@@ -1,20 +1,20 @@
 <script lang="ts" context="module">
-  import { Chart, BarController, CategoryScale, LinearScale, BarElement} from 'chart.js';
+  import { Chart, ArcElement, PieController } from 'chart.js';
   import type { ChartData, UpdateMode, ChartOptions } from 'chart.js';
   import BaseChart from './chart.svelte';
   
-  Chart.register(BarController, CategoryScale, LinearScale, BarElement);
+  Chart.register(PieController, ArcElement);
 </script>
 
 <script lang="ts">
 
-  const type= 'bar' as const;
+  const type= 'pie' as const;
   export let updateMode: UpdateMode = "none";
   export let data: ChartData<typeof type>;
   export let options: ChartOptions<typeof type> = {};
 
 </script>
 
-<BaseChart {type} {updateMode} {data} {options} {...$$restProps}>
-    <slot />
+<BaseChart {type} {data} {options} {updateMode} {...$$restProps} >
+  <slot />
 </BaseChart>
