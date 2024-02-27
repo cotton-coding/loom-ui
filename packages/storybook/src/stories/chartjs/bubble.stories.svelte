@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 
   import { Template, Story } from '@storybook/addon-svelte-csf';
-  import { Bubble, Legend } from '@loom-ui/chartjs';
+  import { Bubble, Legend, Title } from '@loom-ui/chartjs';
 
   export const meta = {
     title: 'Components/Chart.js/Bubble',
@@ -20,6 +20,46 @@
 <script lang="ts">
 
 
+const data = {
+  datasets: [
+    {
+      label: 'John',
+      data: [
+        {
+          x: 3,
+          y: 7,
+          r: 10,
+        },
+      ],
+      backgroundColor: '#ff6384',
+      hoverBackgroundColor: '#ff6384',
+    },
+    {
+      label: 'Peter',
+      data: [
+        {
+          x: 3.2,
+          y: 7,
+          r: 10,
+        },
+      ],
+      backgroundColor: '#44e4ee',
+      hoverBackgroundColor: '#44e4ee',
+    },
+    {
+      label: 'Donald',
+      data: [
+        {
+          x: 3.4,
+          y: 7,
+          r: 10,
+        },
+      ],
+      backgroundColor: '#62088A',
+      hoverBackgroundColor: '#62088A',
+    },
+  ],
+};
 
 </script>
 
@@ -29,24 +69,13 @@
 
 <Story name="With legend">
 	<Bubble 
-		data={{
-			datasets: [
-			{
-				label: 'My First Dataset',
-				data: [300, 50, 100],
-				backgroundColor: [
-					'rgb(255, 99, 132)',
-					'rgb(54, 162, 235)',
-					'rgb(255, 205, 86)',
-				],
-			}
-		]}}
+		{data}
 		responsive
 		--chart-width="80vw"
 		--chart-height="100vh"
 		
 	>
-		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
+		<Legend />
 	</Bubble>
 </Story>
 
@@ -55,22 +84,12 @@
 		title: 'Actress',
 }} let:args>
 	<Bubble 
-		data={{
-			datasets: [
-			{
-				label: 'My First Dataset',
-				data: [300, 50, 100],
-				backgroundColor: [
-					'rgb(255, 99, 132)',
-					'rgb(54, 162, 235)',
-					'rgb(255, 205, 86)',
-				],
-			}
-		]}}
+		{data}
 		responsive
 		--chart-width="80vw"
 		--chart-height="100vh"
 	>
-		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} title={args.title}/>
+		<Legend />
+		<Title text="Bubble Chart" />
 	</Bubble>
 </Story>

@@ -21,7 +21,7 @@
 <script lang="ts">
   const dispatcher = createEventDispatcher<EventTypes>();
 
-  export let labels: Array<string>
+  export let labels: Array<string> | undefined = undefined;
   export let title: string | undefined = undefined;
   export let display: boolean = true;
   export let position: LayoutPosition = 'top';
@@ -43,7 +43,7 @@
     
   });
 
-  function updateLabels(labels: Array<string>) {
+  function updateLabels(labels: Array<string> | undefined) {
     data.update((chartData) => {
       return {
         ...chartData,

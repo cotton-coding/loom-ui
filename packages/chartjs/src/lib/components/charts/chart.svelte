@@ -1,14 +1,12 @@
-<script lang="ts" context="module">
-	import { CONTEXT_CHART, type chartContextData } from '$lib/definitions.js';
+<script lang="ts" generics="TType extends ChartType = ChartType, TData = DefaultDataPoint<TType>, TLabel= unknown ">
+
+  import { CONTEXT_CHART, type chartContextData } from '$lib/definitions.js';
   import { writable } from 'svelte/store';
   import type { ChartData, ChartOptions, DefaultDataPoint, Plugin } from 'chart.js';
   import type { ChartType, UpdateMode } from 'chart.js';
 	import { afterUpdate, setContext, tick } from 'svelte';
   import { chartAction } from '$lib/actions/chart.js';
 
-</script>
-
-<script lang="ts" generics="TType extends ChartType = ChartType, TData = DefaultDataPoint<TType>, TLabel= unknown ">
   export let type: TType;
   export let data: ChartData<TType, TData, TLabel>;
   export let updateMode: UpdateMode = "none";
