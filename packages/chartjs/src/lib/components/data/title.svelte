@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { type _DeepPartialObject } from '$lib/definitions.js';
 	import { CONTEXT_CHART, type chartContextData } from '$lib/definitions.js';
-	import { type TitleOptions } from 'chart.js';
-	import { getContext } from 'svelte';
+	import { type TitleOptions, Title, Chart } from 'chart.js';
+	import { afterUpdate, getContext, hasContext, onMount } from 'svelte';
 
 	export let text: string;
 	export let display: boolean = true;
@@ -9,22 +10,35 @@
 	
 	$: otherProps = $$restProps as TitleOptions;
 
-	const { options } = getContext<chartContextData>(CONTEXT_CHART);
+	const { options, plugins } = getContext<chartContextData>(CONTEXT_CHART);
 
-	function updateTitlePlugin(props: TitleOptions) {
+	
+
+	onMount(() => {
+		plugins.update((chartPlugins) => {
+			return [...chartPlugins, Title]
+		});
+	});
+
+	afterUpdate(() => {
+		updateTitlePlugin({ ...otherProps, text, display, position });
+	});
+
+
+	function updateTitlePlugin(props: _DeepPartialObject<TitleOptions>) {
+		console.log('updateTitlePlugin', props);
 		options.update((chartOptions) => {
 			return {
 				...chartOptions,
 				plugins: {
+					...chartOptions.plugins,
 					title: {
 						...chartOptions.plugins?.title || {},
-						...props
+						...props,
 					}
 				}
 			};
 		});
 	}
-
-	$: updateTitlePlugin({ ...otherProps, text, display, position });
 
 </script>

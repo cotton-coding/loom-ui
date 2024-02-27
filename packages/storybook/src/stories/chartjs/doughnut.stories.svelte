@@ -1,7 +1,9 @@
 <script lang="ts" context="module">
 
   import { Template, Story } from '@storybook/addon-svelte-csf';
-  import { Doughnut, Legend } from '@loom-ui/chartjs';
+  import { Doughnut, Legend, Title } from '@loom-ui/chartjs';
+	import { faker } from '@faker-js/faker';
+	import { generateBackgroundColors, generateFloatNumberArray } from './data/generator.js';
 
   export const meta = {
     title: 'Components/Chart.js/Doughnut',
@@ -17,8 +19,27 @@
 </script>
 
 
-<script lang="ts">
+<script lang="ts">	
+	const amount = faker.number.int(100);
 
+	const data = {
+		datasets: [
+			{
+				label: 'My First Dataset',
+				data: generateFloatNumberArray(amount, 0, 100),
+				backgroundColor: generateBackgroundColors(amount),
+			}
+		]	
+	};
+
+	const options = {
+		plugins: {
+			title: {
+				display: true,
+				text: 'Custom Chart Title'
+			}
+		}
+	}
 
 </script>
 
@@ -26,20 +47,7 @@
 	<Doughnut {...args} />
 </Template>
 
-<Story name="Simple" args={{
-	data: {
-		datasets: [
-			{
-				label: 'My First Dataset',
-				data: [300, 50, 100],
-				backgroundColor: [
-					'rgb(255, 99, 132)',
-					'rgb(54, 162, 235)',
-					'rgb(255, 205, 86)',
-				],
-			}
-		]	
-	}}} 
+<Story name="Simple" args={{data, options}} 
 />
 
 
@@ -83,7 +91,8 @@
 			}
 		]}}
 	>
-		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} title={args.title}/>
+		<Title text="Actress" />
+		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} title={args.title} position="bottom"/>
 	</Doughnut>
 </Story>
 

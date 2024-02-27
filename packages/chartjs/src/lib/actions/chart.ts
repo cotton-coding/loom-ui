@@ -11,15 +11,17 @@ export interface Params<T extends ChartType = ChartType, U = DefaultDataPoint<T>
 
 export function chartAction<T extends ChartType, U, J> (node: HTMLCanvasElement, params: Params<T, U, J>) {
   
-
   const { config } = params;
+
+  console.log(config);
+  console.log('action', Date.now());
 
   const chart = new Chart(node, config);
 
   return {
     update(updatedParams: Params<T, U, J>) {
       const { config, updateMode } = updatedParams;
-
+      console.log(config);
       chart.data = config.data;
       if(config.options) {
         chart.options = config.options;

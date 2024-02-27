@@ -1,4 +1,4 @@
-import type { ChartData, ChartOptions, ChartType, DefaultDataPoint } from "chart.js";
+import type { ChartData, ChartOptions, ChartType, DefaultDataPoint, Plugin } from "chart.js";
 import type { Writable } from "svelte/store";
 
 export const CONTEXT_CHART = 'chart-context' as const;
@@ -10,6 +10,7 @@ export type chartContextData<TType extends ChartType = ChartType, TData = Defaul
   type: string;
   data: Writable<ChartData<TType, TData, TLabel>>
   options: Writable<ChartOptions<TType>>
+  plugins: Writable<Plugin<TType>[]>
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
