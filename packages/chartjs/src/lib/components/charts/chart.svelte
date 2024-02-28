@@ -4,7 +4,7 @@
   import { writable } from 'svelte/store';
   import type { ChartData, ChartOptions, DefaultDataPoint, Plugin } from 'chart.js';
   import type { ChartType, UpdateMode } from 'chart.js';
-	import { afterUpdate, setContext, tick } from 'svelte';
+	import { setContext, tick } from 'svelte';
   import { chartAction } from '$lib/actions/chart.js';
 
   export let type: TType;
@@ -30,23 +30,23 @@
 
 </script>
 
-
-<slot />
-{#await tick() then}
 <div>
-  <canvas use:chartAction={{
-    config: {
-      type,
-      data: $dataStore,
-      options: $optionStore,
-      plugins: $pluginStore
-    },
-    updateMode
-  }}>
-  </canvas>
-</div>
-{/await}
+  <slot />
+  {#await tick() then}
 
+    <canvas use:chartAction={{
+      config: {
+        type,
+        data: $dataStore,
+        options: $optionStore,
+        plugins: $pluginStore
+      },
+      updateMode
+    }}>
+    </canvas>
+
+  {/await}
+</div>
 
 <style>
   div {

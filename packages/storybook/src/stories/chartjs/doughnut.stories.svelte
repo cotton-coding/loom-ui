@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 
   import { Template, Story } from '@storybook/addon-svelte-csf';
-  import { Doughnut, Legend, Title } from '@loom-ui/chartjs';
+  import { Doughnut, Legend, Title, Tooltip } from '@loom-ui/chartjs';
 	import { faker } from '@faker-js/faker';
 	import { generateBackgroundColors, generateFloatNumberArray } from './data/generator.js';
 
@@ -72,6 +72,72 @@
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
 	</Doughnut>
 </Story>
+
+<Story name="With legend">
+	<Doughnut 
+		data={{
+			datasets: [
+			{
+				label: 'My First Dataset',
+				data: [300, 50, 100],
+				backgroundColor: [
+					'rgb(255, 99, 132)',
+					'rgb(54, 162, 235)',
+					'rgb(255, 205, 86)',
+				],
+			}
+		]}}
+		responsive
+		--chart-width="80vw"
+		--chart-height="100vh"
+	>
+		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
+	</Doughnut>
+</Story>
+
+<Story name="With Tooltip">
+	<Doughnut 
+		data={{
+			datasets: [
+			{
+				label: 'My First Dataset',
+				data: [300, 50, 100],
+				backgroundColor: [
+					'rgb(255, 99, 132)',
+					'rgb(54, 162, 235)',
+					'rgb(255, 205, 86)',
+				],
+			}
+		]}}
+		responsive
+		--chart-width="80vw"
+		--chart-height="100vh"
+	>
+		<Title text="Actress" />
+		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
+		<Tooltip position="nearest">
+			<svelte:fragment let:tooltip let:chart>
+				<table>
+					<thead>
+						<tr>
+							<th>Label</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each tooltip.dataPoints as dataPoint}
+							<tr>
+								<td>{dataPoint.label}</td>
+								<td>{dataPoint.formattedValue}</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</svelte:fragment>
+		</Tooltip>
+	</Doughnut>
+</Story>
+
 
 
 <Story name="With legend and title" args={{

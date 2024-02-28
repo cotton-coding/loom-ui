@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 
   import { Template, Story } from '@storybook/addon-svelte-csf';
-  import { Line, Legend } from '@loom-ui/chartjs';
+  import { Line, Legend, Tooltip } from '@loom-ui/chartjs';
 
   export const meta = {
     title: 'Components/Chart.js/Line',
@@ -27,7 +27,7 @@
   <Line {...args} />
 </Template>
 
-<Story name="With legend">
+<Story name="With legend and tooltip">
 	<Line 
 		data={{
 			datasets: [
@@ -46,6 +46,7 @@
 		--chart-height="100vh"
 		
 	>
+		<Tooltip />
 		<Legend labels={['FEMALE', 'MALE', 'DIVERSE']} />
 	</Line>
 </Story>
