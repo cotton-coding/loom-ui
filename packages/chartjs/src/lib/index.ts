@@ -12,6 +12,8 @@ import Scatter from './components/charts/scatter.svelte';
 
 import Legend from './components/data/legend.svelte';
 import Title from './components/data/title.svelte';
+import Tooltip from './components/data/tooltip.svelte';
 
 export * from './actions/chart.js';
-export { Doughnut, Bar, Chart, Legend, Title, Bubble, Line, Pie, PolarArea, Radar, Scatter}
+export { Doughnut, Bar, Chart, Bubble, Line, Pie, PolarArea, Radar, Scatter}
+export { Tooltip, Legend, Title };
