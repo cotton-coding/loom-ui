@@ -1,35 +1,33 @@
-<script lang="ts" generics="TType extends ChartType = ChartType">
-	import type { ChartType } from 'chart.js';
+<script lang="ts">
 	import { Chart, Tooltip, type TooltipOptions} from 'chart.js';
 	import type { _DeepPartialObject, chartContextData } from "$lib/definitions.js";
   import { CONTEXT_CHART } from '$lib/definitions.js';
-
-	import { onMount, getContext, hasContext } from 'svelte';
-	import { get } from 'svelte/store';
-
-  Chart.register(Tooltip);
+	import { onMount, getContext, hasContext, afterUpdate } from 'svelte';
 
   const { options, plugins } = getContext<chartContextData>(CONTEXT_CHART);
   let tooltipEl: HTMLDivElement;
-  export let position: TooltipOptions['position'] = 'nearest';
+  export let position: TooltipOptions['position'] = 'average';
   export let hide: TooltipOptions['enabled'] = $$slots.default ? true : false;
 
   onMount(() => {
     plugins.update((chartPlugins) => {
-      return [...chartPlugins, Tooltip];
-    })
+      return [Tooltip, ...chartPlugins];
+    });
+  })
+
+  afterUpdate(() => {
+    
+    setTooltipOptions({ position, enabled: !hide });
+    
   })
 
   function setTooltipOptions(props: _DeepPartialObject<TooltipOptions>) {
+  
     options.update((chartOptions) => {
       return {
         ...chartOptions,
         plugins: {
           ...chartOptions.plugins,
-          interaction: {
-            intersect: false,
-            mode: 'index',
-          },
           tooltip: {
             ...chartOptions.plugins?.tooltip ?? {},
             ...props
@@ -38,9 +36,6 @@
       }
     });
   }
-
-
-  $: hasContext(CONTEXT_CHART) && setTooltipOptions({ position, enabled: !hide });
 
   let externalContext: Parameters<TooltipOptions['external']>[0];
 
@@ -84,6 +79,8 @@
   >
     <slot {...externalContext}/>
   </div>
+{:else}
+<div>Test</div>
 {/if}
 
 <style>
