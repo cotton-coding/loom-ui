@@ -17,6 +17,12 @@
 		background-color: var(--input-label-background-color);
 	}
 
+	:global(.input-group):focus-within label {
+		background-color: var(--input-border-color-focus, var(--primary-color));
+		border-color: var(--input-border-color-focus, var(--primary-color));
+		color: var(--input-label-text-color-focus);
+	}
+
 	label:first-child {
 		border-top-left-radius: var(--border-radius);
 		border-bottom-left-radius: var(--border-radius);

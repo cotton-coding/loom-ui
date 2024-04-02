@@ -1,12 +1,8 @@
 <script lang="ts">
-	type LabelProps = {
-		for: string;
-	};
 
-	let { for: id }: LabelProps = $props();
 </script>
 
-<span for={id}><slot></slot></span>
+<span><slot></slot></span>
 
 <style>
 	span {
@@ -17,6 +13,9 @@
 		background-color: var(--input-label-background-color);
 	}
 
+	:global(.input-group):focus-within span {
+		border-color: var(--input-border-color-focus, var(--primary-color));
+	}
 	span:first-child {
 		border-top-left-radius: var(--border-radius);
 		border-bottom-left-radius: var(--border-radius);

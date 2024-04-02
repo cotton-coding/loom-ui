@@ -31,6 +31,11 @@
 		position: relative;
 	}
 
+
+	:global(.input-group):focus-within .input-element {
+		border-color: var(--input-border-color-focus, var(--primary-color));
+	}
+
 	div > :global(svg) {
 		position: absolute;
 		top: 0;
