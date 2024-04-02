@@ -1,25 +1,27 @@
 <script lang="ts">
-	let { ...props } = $props();
+	type LabelProps = {
+		for: string;
+	};
+
+	let { for: id }: LabelProps = $props();
 </script>
 
-<input {...props} />
+<span for={id}><slot></slot></span>
 
 <style>
-
-
-	input {
+	span {
 		all: unset;
 		padding: var(--input-spacing-x) var(--input-spacing-y);
 		border: 1px solid var(--border-color-light);
-		background: var(--content-background-color);
+		background-color: var(--input-label-background-color);
 	}
 
-	input:first-child {
+	span:first-child {
 		border-top-left-radius: var(--border-radius);
 		border-bottom-left-radius: var(--border-radius);
 	}
 
-	input:last-child {
+	span:last-child {
 		border-top-right-radius: var(--border-radius);
 		border-bottom-right-radius: var(--border-radius);
 	}

@@ -17,9 +17,9 @@
 		"package": "pnpm -r package"
 	},
 	"dependencies": {
-		"@types/eslint": "^8.56.4",
-		"@typescript-eslint/eslint-plugin": "^7.1.0",
-		"@typescript-eslint/parser": "^7.1.0",
+		"@types/eslint": "^8.56.7",
+		"@typescript-eslint/eslint-plugin": "^7.5.0",
+		"@typescript-eslint/parser": "^7.5.0",
 		"chart.js": "^4.4.2",
 		"publint": "^0.2.7"
 	}
