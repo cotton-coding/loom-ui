@@ -1,0 +1,53 @@
+name: Publish
+on:
+  push:
+    tags:
+      - 'release/*'
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install
+        run: pnpm install
+      - name: Lint & Fix
+        run: pnpm lint:fix
+      - name: Build
+        run: pnpm build
+      - name: Test
+        run: pnpm test:ci
+  publish:
+    name: Build & Publish
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          registry-url: https://registry.npmjs.org/
+      - name: Install
+        run: pnpm install
+      - name: Build & publint
+        run: pnpm run prepublishOnly
+      - name: Publish
+        run: pnpm -r publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

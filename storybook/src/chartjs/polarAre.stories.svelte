@@ -38,13 +38,13 @@
 					'rgb(255, 205, 86)',
 				],
 			}
-		]	
-	}}} 
+		]
+	}}}
 />
 
 
 <Story name="With legend">
-	<PolarArea 
+	<PolarArea
 		data={{
 			datasets: [
 			{
@@ -69,7 +69,7 @@
 <Story name="With legend and title" args={{
 		title: 'Actress',
 }} let:args>
-	<PolarArea 
+	<PolarArea
 		data={{
 			datasets: [
 			{

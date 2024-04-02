@@ -1,0 +1,69 @@
+name: Core-Pipeline
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - "hotfix/**"
+      - "feature/**"
+  pull_request:
+
+jobs:
+  test:
+    name: lint & test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    steps:
+      - uses: actions/checkout@v4
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install
+        run: pnpm install
+      - name: Lint & Fix
+        run: pnpm lint:fix
+      - name: Run build to resolve dependencies
+        run: pnpm build
+      - name: Test
+        run: pnpm test:ci
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Commit Diff
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "auto fix lint errors"
+          commit_options: "--no-verify"
+  pusblish-dry:
+    name: Build & dry run on publish
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+      - name: Setup NodeJs
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          registry-url: https://registry.npmjs.org/
+          cache: "pnpm"
+      - name: Install
+        run: pnpm install
+      - name: Build && publint
+        run: pnpm run prepublishOnly
+      - name: Publish Dry Run
+        run: pnpm -r publish --dry-run --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

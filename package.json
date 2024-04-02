@@ -1,16 +1,22 @@
 {
-  "name": "loom-ui",
-  "private": true,
-  "description": "A collection of UI packages for svelte and sveltekit",
-  "workspaces": ["packages/*"],
-  "scripts": {
-    "build": "bun run build --workspaces --if-present"
-  },
-  "dependencies": {
-    "@types/eslint": "^8.56.4",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
-    "chart.js": "^4.4.2",
-    "publint": "^0.2.7"
-  }
+	"name": "loom-ui",
+	"private": true,
+	"description": "A collection of UI packages for svelte and sveltekit",
+	"workspaces": [
+		"packages/*",
+		"storybook"
+	],
+	"scripts": {
+		"build": "pnpm -r build",
+		"storybook": "pnpm -r storybook",
+		"build:storybook": "pnpm -r build:storybook",
+		"package": "pnpm -r package"
+	},
+	"dependencies": {
+		"@types/eslint": "^8.56.4",
+		"@typescript-eslint/eslint-plugin": "^7.1.0",
+		"@typescript-eslint/parser": "^7.1.0",
+		"chart.js": "^4.4.2",
+		"publint": "^0.2.7"
+	}
 }
