@@ -2,7 +2,7 @@ name: Publish
 on:
   push:
     tags:
-      - "release/*"
+      - 'release/*'
 
 jobs:
   test:
@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: 'pnpm'
       - name: Install
         run: pnpm install
       - name: Lint & Fix
@@ -41,7 +41,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: 'pnpm'
           registry-url: https://registry.npmjs.org/
       - name: Install
         run: pnpm install
