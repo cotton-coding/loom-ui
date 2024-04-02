@@ -8,6 +8,10 @@
 	],
 	"scripts": {
 		"build": "pnpm -r build",
+		"lint": "pnpm -r lint",
+		"lint:fix": "pnpm -r lint:fix",
+		"test": "pnpm -r test",
+		"test:ci": "pnpm -r test:ci",
 		"storybook": "pnpm -r storybook",
 		"build:storybook": "pnpm -r build:storybook",
 		"package": "pnpm -r package"
