@@ -18,6 +18,7 @@
 <style>
 	div.input-group {
 		margin: var(--input-margin, 0);
+		max-width: var(--input-max-width, 100%);
 	}
 
 	div.inputs {

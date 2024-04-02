@@ -12,13 +12,15 @@
 	span {
 		all: unset;
 		padding: var(--input-spacing-x) var(--input-spacing-y);
-		border: 1px solid var(--border-color-light);
+		border: 1px solid var(--input-border-color);
+		border-left: none;
 		background-color: var(--input-label-background-color);
 	}
 
 	span:first-child {
 		border-top-left-radius: var(--border-radius);
 		border-bottom-left-radius: var(--border-radius);
+		border-left: 1px solid var(--input-border-color);
 	}
 
 	span:last-child {
