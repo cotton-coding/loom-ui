@@ -1,0 +1,52 @@
+:root {
+	/* Colors */
+	--background-color: #ccc;
+	--text-color: #373934;
+	--border-color: #777;
+	--border-color-light: #e0e0e0;
+	--primary-color: #20e6d2;
+	--secondary-color: #006d77;
+	--success-color: #28a745;
+	--info-color: #17a2b8;
+	--warning-color: #ffc107;
+	--danger-color: #dc3545;
+	--content-background-color: #fff;
+
+	/* Layout */
+	--padding-small: 0.5rem;
+	--padding-medium: 1rem;
+	--padding-large: 2rem;
+
+	--margin-small: 0.5rem;
+	--margin-medium: 1rem;
+	--margin-large: 2rem;
+
+	--spacing-xxs: 0.1rem;
+	--spacing-xs: 0.3rem;
+	--spacing-ms: 0.6rem;
+	--spacing-md: 1rem;
+	--spacing-xl: 2rem;
+
+	--border-radius-small: 0.25rem;
+	--border-radius-medium: 0.5rem;
+	--border-radius: var(--border-radius-medium);
+	--border-radius-large: 1rem;
+
+	--border-width-small: 1px;
+	--border-width-medium: 2px;
+	--border-width: var(--border-width-medium);
+	--border-width-large: 4px;
+
+	--input-spacing-x: 0.85rem;
+	--input-spacing-y: 0.55rem;
+	--input-text-color: #59738a;
+	--input-background-color: #fff;
+	--input-label-background-color: #eee;
+	--input-border-color: #aaa;
+	--input-broder-size: 1px;
+	--input-border-radius: 0.25rem;
+	--input-note-text-size: 0.8rem;
+	--input-margin: 0.2rem 0.1rem;
+	--input-border-color-focus: var(--secondary-color);
+	--input-label-text-color-focus: #fff;
+}
