@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ErrorIcon from '$lib/icons/error-warning-fill.svg?raw';
 	import CheckIcon from '$lib/icons/check-line.svg?raw';
+	import { getContext } from 'svelte';
 
 	type InputProps = {
 		status?: 'invalid' | 'valid';
@@ -18,22 +19,18 @@
 </script>
 
 {#if status == null}
-<input class="input-element" {...props} />
+<input class="group-element" {...props} />
 {:else}
-<div class="input-element {status}">
+<div class="group-element {status}">
 	<input {...props} />
 	{@html getIcon()}
 </div>
 {/if}
 
 <style>
+	@import './input.css';
 	div {
 		position: relative;
-	}
-
-
-	:global(.input-group):focus-within .input-element {
-		border-color: var(--input-border-color-focus, var(--primary-color));
 	}
 
 	div > :global(svg) {
@@ -52,27 +49,13 @@
 		color: var(--success-color);
 	}
 
-	.input-element {
+	.group-element {
 		position: relative;
-
-		border: 1px solid var(--input-border-color);
-		border-left: none;
 		background: var(--content-background-color);
 	}
 
 	input {
 		all: unset;
 		padding: var(--input-spacing-x) var(--input-spacing-y);
-	}
-
-	.input-element:first-child {
-		border-top-left-radius: var(--border-radius);
-		border-bottom-left-radius: var(--border-radius);
-		border-left: 1px solid var(--input-border-color);
-	}
-
-	.input-element:last-child {
-		border-top-right-radius: var(--border-radius);
-		border-bottom-right-radius: var(--border-radius);
 	}
 </style>

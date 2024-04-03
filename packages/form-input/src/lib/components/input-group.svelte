@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { writable } from 'svelte/store';
 	import { getRandomString } from '$lib/utils/random.js';
 	import { setContext } from 'svelte';
 
-	setContext('input-group');
+	setContext('input-group', {});
 
 	const id: string = getRandomString(21);
 	let { note, status, ...props } = $props();
 </script>
 
 <div class="input-group" class:has-note={note}>
-	<div class="inputs">
+	<div class="inputs {status}">
 		<slot {id}></slot>
 	</div>
 	{#if note}<small>{note}</small>{/if}
