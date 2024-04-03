@@ -14,7 +14,8 @@
 		"test:ci": "pnpm -r test:ci",
 		"storybook": "pnpm -r storybook",
 		"build:storybook": "pnpm -r build:storybook",
-		"package": "pnpm -r package"
+		"package": "pnpm -r package",
+		"prepublishOnly": "pnpm -r prepublishOnly"
 	},
 	"dependencies": {
 		"@types/eslint": "^8.56.7",
