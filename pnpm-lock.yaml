@@ -162,9 +162,6 @@ importers:
       '@loom-ui/chartjs':
         specifier: workspace:^
         version: link:../packages/chartjs
-      '@loom-ui/form-input':
-        specifier: workspace:^
-        version: link:../packages/form-input
       chart.js:
         specifier: ^4.4.2
         version: 4.4.2
