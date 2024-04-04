@@ -1,10 +1,10 @@
 <script lang="ts">
 	import ErrorIcon from '$lib/icons/error-warning-fill.svg?raw';
 	import CheckIcon from '$lib/icons/check-line.svg?raw';
-	import { getContext } from 'svelte';
 
 	type InputProps = {
 		status?: 'invalid' | 'valid';
+		[key: string]: unknown;
 	};
 
 	let { status, ...props }: InputProps = $props();
@@ -28,7 +28,9 @@
 {/if}
 
 <style>
+
 	@import './input.css';
+
 	div {
 		position: relative;
 	}

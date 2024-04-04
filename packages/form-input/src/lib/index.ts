@@ -1,7 +1,14 @@
 // Reexport your entry components here
-import Input from './components/input.svelte';
-import InputGroup from './components/input-group.svelte';
-import Label from './components/label.svelte';
-import Info from './components/info.svelte';
-import Select from './components/select.svelte';
-export { Input, InputGroup, Label, Info, Select};
+import Input from './components/base/input.svelte';
+import InputGroup from './components/base/input-group.svelte';
+import Label from './components/base/label.svelte';
+import Info from './components/base/info.svelte';
+import Select from './components/base/select.svelte';
+import ToggleButton from './components/base/toggle-button.svelte';
+
+import Password from './components/elements/password.svelte';
+
+export {
+	Input, InputGroup, Label, Info, Select, ToggleButton,
+	Password
+};

@@ -1,6 +1,6 @@
 :root {
 	/* Colors */
-	--background-color: #ccc;
+	--background-color: #efefef;
 	--text-color: #373934;
 	--border-color: #777;
 	--border-color-light: #e0e0e0;
@@ -39,14 +39,20 @@
 
 	--input-spacing-x: 0.85rem;
 	--input-spacing-y: 0.55rem;
-	--input-text-color: #59738a;
-	--input-background-color: #fff;
-	--input-label-background-color: #eee;
-	--input-border-color: #aaa;
-	--input-broder-size: 1px;
+	--input-broder-size: 2px;
 	--input-border-radius: 0.25rem;
 	--input-note-text-size: 0.8rem;
 	--input-margin: 0.2rem 0.1rem;
+
+	--input-text-color: #59738a;
+	--input-background-color: #fff;
+	--input-border-color: #aaa;
+	--input-label-background-color: #eee;
 	--input-border-color-focus: var(--secondary-color);
 	--input-label-text-color-focus: #fff;
+	--button-background-color: var(--secondary-color);
+	--button-background-color-hover: #005f6b;
+	//--toggle-selected-color: #fff;
+	--toggle-selected-background-color: var(--primary-color);
+	--input-brightness-factor 0.05;
 }

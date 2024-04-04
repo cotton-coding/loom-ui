@@ -2,10 +2,15 @@
 	import { getRandomString } from '$lib/utils/random.js';
 	import { setContext } from 'svelte';
 
+	type InputGroupProps = {
+		note?: string;
+		status?: string;
+	};
+
 	setContext('input-group', {});
 
 	const id: string = getRandomString(21);
-	let { note, status, ...props } = $props();
+	let { note, status = "", ...props }: InputGroupProps = $props();
 </script>
 
 <div class="input-group" class:has-note={note}>

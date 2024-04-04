@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Input, InputGroup, Label, Info, Select } from '$lib/index.js';
+	import { Input, InputGroup, Label, Info, Select, ToggleButton, Password } from '$lib/index.js';
+
+
 </script>
 
 <h1>Components</h1>
@@ -15,7 +17,7 @@
 
 <InputGroup let:id type="text" note="Info note">
 	<Label for={id} >Specification</Label>
-	<Input label="Name" value="John Doe" name="name" status="valid" />
+	<Input value="John Doe" name="name" status="valid" />
 	<Info>mt</Info>
 </InputGroup>
 
@@ -31,3 +33,15 @@
 </InputGroup>
 
 
+<InputGroup>
+	<Input type="text" />
+	<ToggleButton let:checked>
+		{#if checked}
+			On
+		{:else}
+			Off
+		{/if}
+	</ToggleButton>
+</InputGroup>
+
+<Password label="Password" name="password" />

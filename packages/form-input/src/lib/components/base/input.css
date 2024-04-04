@@ -1,5 +1,6 @@
 .group-element {
-	border: 1px solid var(--input-border-color);
+	position: relative;
+	border: var(--input-broder-size) solid var(--input-border-color);
 	border-left: none;
 }
 
@@ -11,7 +12,11 @@
 	border-color: var(--danger-color);
 }
 
-:global(.input-group):focus-within label {
+:global(.input-group .inputs):focus-within .group-element {
+	border-color: var(--input-border-color-focus, var(--primary-color));
+}
+
+:global(.input-group):focus-within label.label {
 	background-color: var(--input-border-color-focus, var(--primary-color));
 	border-color: var(--input-border-color-focus, var(--primary-color));
 	color: var(--input-label-text-color-focus);
