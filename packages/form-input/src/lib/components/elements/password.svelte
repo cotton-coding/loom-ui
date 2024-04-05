@@ -20,8 +20,16 @@
 
 <InputGroup let:id>
 	{#if label}<Label for={id}>{label}</Label>{/if}
-	<Input type={show ? 'text':'password'} {id} name={name}  />
-	<ToggleButton bind:checked={show}>
+	<Input type={show ? 'text':'password'} {id} name={name}
+		--border-y="0"
+		{...props}
+	/>
+	<ToggleButton
+		bind:checked={show}
+		--background-color="var(--input-background-color)"
+		--selected-background-color="var(--input-background-color)"
+		--border-y="0"
+	>
 		{#if show}{@html EyeOpen}
 		{:else}{@html EyeClose}
 		{/if}

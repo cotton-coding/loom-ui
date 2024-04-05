@@ -38,7 +38,16 @@
 <style>
 	@import './input.css';
 
+	:root {
+		--border-y: var(--border-y, var(--input-border));
+		--background-color: var(--background-color, var(--label-background-color));
+		--color: var(--color, var(--label-text-color));
+		--selected-background-color: var(--selected-background-color, var(--toggle-selected-background-color));
+		--selected-color: var(--selected-color, var(--toggle-selected-color));
+	}
+
 	.group-element {
+
 		display: flex;
 		flex-direction: row;
 		overflow: hidden;
@@ -56,9 +65,9 @@
 	}
 
 	label {
-		all: unset;
+		color: var(--color);
 		padding: var(--input-spacing-x) var(--input-spacing-y);
-		background-color: var(--input-label-background-color);
+		background-color: var(--background-color);
 	}
 
 	label > :global(svg) {
@@ -66,8 +75,8 @@
 	}
 
 	input:checked + label {
-		color: var(--toggle-selected-color);
-		background-color: var(--toggle-selected-background-color);
+		color: var(--selected-color);
+		background-color: var(--selected-background-color);
 	}
 
 	label:hover,

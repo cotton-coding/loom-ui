@@ -1,6 +1,7 @@
 .group-element {
 	position: relative;
-	border: var(--input-broder-size) solid var(--input-border-color);
+	border: var(--input-border-size) solid var(--input-border-color);
+	border-right: var(--border-y, var(--input-border-size)) solid var(--input-border-color);
 	border-left: none;
 }
 
@@ -22,13 +23,14 @@
 	color: var(--input-label-text-color-focus);
 }
 
-.group-element:first-child {
+.group-element.first-element {
 	border-top-left-radius: var(--border-radius);
 	border-bottom-left-radius: var(--border-radius);
-	border-left: 1px solid var(--input-border-color);
+	border-left: var(--input-border-size) solid var(--input-border-color);
 }
 
-.group-element:last-child {
+.group-element.last-element {
 	border-top-right-radius: var(--border-radius);
 	border-bottom-right-radius: var(--border-radius);
+	border-right: var(--input-border-size) solid var(--input-border-color);
 }
