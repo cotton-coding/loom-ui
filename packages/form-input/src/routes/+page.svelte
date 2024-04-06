@@ -45,3 +45,15 @@
 </InputGroup>
 
 <Password label="Password" name="password" />
+
+<InputGroup>
+	<ToggleButton name="radio" radio>
+		Ape
+	</ToggleButton>
+	<ToggleButton name="radio" radio>
+		Giraffe
+	</ToggleButton>
+	<ToggleButton name="radio" radio>
+		Elephant
+	</ToggleButton>
+</InputGroup>

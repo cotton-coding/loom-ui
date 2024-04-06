@@ -5,6 +5,8 @@
 		id?: string;
 		name?: string;
 		checked?: boolean;
+		radio: boolean;
+		value: string;
 		ontoggle?: (isChecked: boolean) => void;
 	} & HTMLInputElement['attributes'];
 
@@ -14,6 +16,7 @@
 		name,
 		id = getRandomId(name),
 		checked = $bindable(false),
+		radio = false,
 		ontoggle = () => {},
 		...props
 	}: InputProps = $props();
@@ -27,7 +30,7 @@
 </script>
 
 <div class="group-element">
-	<input {id} type="checkbox" {onchange} {...props}/>
+	<input {id} type={radio ? 'radio' : 'checkbox'} {onchange} {name} {...props}/>
 		<label for={id}>
 			<slot {checked}>
 			</slot>
@@ -38,23 +41,21 @@
 <style>
 	@import './input.css';
 
-	:root {
+	.group-element {
 		--border-y: var(--border-y, var(--input-border));
-		--background-color: var(--background-color, var(--label-background-color));
-		--color: var(--color, var(--label-text-color));
-		--selected-background-color: var(--selected-background-color, var(--toggle-selected-background-color));
-		--selected-color: var(--selected-color, var(--toggle-selected-color));
+		--background-color: var(--toggle-background-color, var(--input-label-background-color));
+		--color: var(--toggle-color, var(--label-text-color));
+		--selected-background-color: var(--toggle-selected-background-color);
+		--selected-color: var(--toggle-selected-color);
 	}
 
 	.group-element {
-
 		display: flex;
 		flex-direction: row;
 		overflow: hidden;
 	}
 
 	input {
-		all: unset;
 		position: absolute;
 		display: none;
 		top: 0;
@@ -68,6 +69,7 @@
 		color: var(--color);
 		padding: var(--input-spacing-x) var(--input-spacing-y);
 		background-color: var(--background-color);
+		cursor: pointer;
 	}
 
 	label > :global(svg) {

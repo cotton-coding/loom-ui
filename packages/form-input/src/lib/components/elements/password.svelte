@@ -26,8 +26,8 @@
 	/>
 	<ToggleButton
 		bind:checked={show}
-		--background-color="var(--input-background-color)"
-		--selected-background-color="var(--input-background-color)"
+		--toggle-background-color="var(--input-background-color)"
+		--toggle-selected-background-color="var(--input-background-color)"
 		--border-y="0"
 	>
 		{#if show}{@html EyeOpen}
