@@ -6,7 +6,7 @@
 		name?: string;
 		checked?: boolean;
 		radio: boolean;
-		value: string;
+		value?: string;
 		ontoggle?: (isChecked: boolean) => void;
 	} & HTMLInputElement['attributes'];
 

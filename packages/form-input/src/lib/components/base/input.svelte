@@ -54,6 +54,8 @@
 	.group-element {
 		position: relative;
 		background: var(--content-background-color);
+		flex-basis: auto;
+		flex-grow: var(--input-flex-grow, 1);
 	}
 
 	input {
